@@ -1,0 +1,2 @@
+recursive-include owm/templates *
+recursive-include owm/static *

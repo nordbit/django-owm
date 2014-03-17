@@ -1,0 +1,6 @@
+{% load owm_tags %}
+<tr>
+	<td>{{ weather.name }}</td>
+	<td>{{ weather.main.temp|to_int }} <img src="http://openweathermap.org/img/w/{{ weather.weather.0.icon }}.png"></td>
+</tr>
+
