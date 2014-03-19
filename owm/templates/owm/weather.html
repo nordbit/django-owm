@@ -1,6 +1,9 @@
 {% load owm_tags %}
+{% if weather.main.temp != None %}
 <tr>
-	<td>{{ city }}</td>
-	<td>{{ weather.main.temp|to_int }} <img src="http://openweathermap.org/img/w/{{ weather.weather.0.icon }}.png" alt="{{ city|escape }}"></td>
+    <td style="vertical-align: middle">{{ city }}</td>
+    <td style="border-right: 0; vertical-align: middle; text-align: right"><span>{{ weather.main.temp|to_int }} °C</span> </td>
+    <td style="border-left: 0; vertical-align: middle; text-align: left"><img src="http://openweathermap.org/img/w/{{ weather.weather.0.icon }}.png" alt="{{ city|escape }}"></td>
 </tr>
+{% endif %}
 
