@@ -15,10 +15,14 @@ def get_weather(city, country):
         'country': country,
         'appid': APPID,
     }
-    req = urllib2.Request(url, None)
-    opener = urllib2.build_opener()
-    f = opener.open(req)
-    data = json.load(f)
+    data = {}
+    try:
+        req = urllib2.Request(url, None)
+        opener = urllib2.build_opener()
+        f = opener.open(req)
+        data = json.load(f)
+    except:
+        pass
     return data
 
 class Weather(models.Model):
@@ -32,7 +36,7 @@ class Weather(models.Model):
         try:
             obj = cls.objects.get(city=city, country=country)
             hours = (now() - obj.last_modified).seconds / 3600
-            if hours > 1:
+            if hours > 3:
                 obj.values = get_weather(city, country)
                 obj.last_modified = now()
                 obj.save()
