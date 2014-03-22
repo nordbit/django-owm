@@ -1,21 +1,21 @@
-{% load owm_tags %}
-<table>
-    <tr>
-        <th>Datum</th>
-        <th align="center">Jutro</th>
-        <th align="center">Dan</th>
-        <th align="center">Noc</th>
-        <th align="center">Min</th>
-        <th align="center">Max</th>
-    </tr>
-    {% for item in forecast.list %}
-    <tr{% if date_now == item.dt|to_date|date:"d.m.Y." %} class="today"{% endif %}>
-        <th>{{ item.dt|to_date|date:"d.m.Y." }}</th>
-        <td align="center">{{ item.temp.morn|to_int }} °C</td>
-        <td align="center">{{ item.temp.day|to_int }} °C</td>
-        <td align="center">{{ item.temp.night|to_int }} °C</td>
-        <td align="center">{{ item.temp.min|to_int }} °C</td>
-        <td align="center">{{ item.temp.max|to_int }} °C</td>
-    </tr>
-    {% endfor %}
-</table>
+{% extends 'base.html' %}
+{% load planet_tags rate_tags owm_tags %}
+
+{% block title %}Forecast{% endblock %}
+
+{% block content %}
+<div class="column-two-third">
+    <h6 class="line"><span>Vremenska Prognoza.</span></h6>
+    <div class="tabs">
+        <ul>
+            {% for city, country in cities.iteritems %}
+            <li><a href="#vp-{{ city }}">{{ city }}</a></li>
+            {% endfor %}
+        </ul>
+        {% for city, country in cities.iteritems %}
+        <div id="vp-{{ city }}">
+            {% get_forecast city country %}
+        </div>
+    </div>
+</div>
+{% endblock %}

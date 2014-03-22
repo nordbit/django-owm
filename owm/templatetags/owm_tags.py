@@ -12,7 +12,7 @@ def get_weather(context, city, country):
         'country': country,
     }
 # Register the custom tag as an inclusion tag with takes_context=True.
-register.inclusion_tag('owm/weather.html', takes_context=True)(get_weather)
+register.inclusion_tag('owm/templatetags/weather.html', takes_context=True)(get_weather)
 
 
 def get_forecast(context, city, country):
@@ -23,7 +23,7 @@ def get_forecast(context, city, country):
         'date_now': datetime.now().strftime("%d.%m.%Y."),
     }
 # Register the custom tag as an inclusion tag with takes_context=True.
-register.inclusion_tag('owm/forecast.html', takes_context=True)(get_forecast)
+register.inclusion_tag('owm/templatetags/forecast.html', takes_context=True)(get_forecast)
 
 
 @register.filter

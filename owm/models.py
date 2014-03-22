@@ -6,8 +6,7 @@ import jsonfield
 import urllib2
 
 from django.utils.timezone import now
-
-APPID = "533d7e39b3384f90460faa73b55f8f8f"
+from settings import APPID
 
 
 def get_weather(city, country):

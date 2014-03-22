@@ -1,0 +1,21 @@
+{% load owm_tags %}
+<table>
+    <tr>
+        <th>Datum</th>
+        <th align="center">Jutro</th>
+        <th align="center">Dan</th>
+        <th align="center">Noc</th>
+        <th align="center">Min</th>
+        <th align="center">Max</th>
+    </tr>
+    {% for item in forecast.list %}
+    <tr{% if date_now == item.dt|to_date|date:"d.m.Y." %} class="today"{% endif %}>
+        <th>{{ item.dt|to_date|date:"d.m.Y." }}</th>
+        <td align="center">{{ item.temp.morn|to_int }} °C</td>
+        <td align="center">{{ item.temp.day|to_int }} °C</td>
+        <td align="center">{{ item.temp.night|to_int }} °C</td>
+        <td align="center">{{ item.temp.min|to_int }} °C</td>
+        <td align="center">{{ item.temp.max|to_int }} °C</td>
+    </tr>
+    {% endfor %}
+</table>
