@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load planet_tags rate_tags owm_tags %}
 
-{% block title %}Forecast{% endblock %}
+{% block title %}Vremenska Prognoza{% endblock %}
 
 {% block content %}
 <div class="column-two-third">
@@ -16,6 +16,7 @@
         <div id="vp-{{ city }}">
             {% get_forecast city country %}
         </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

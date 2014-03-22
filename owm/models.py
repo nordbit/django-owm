@@ -77,7 +77,7 @@ class Forecast(models.Model):
             obj = cls.objects.get(city=city, country=country)
             hours = (now() - obj.last_modified).seconds / 3600
             if hours > 8:
-                obj.values = get_weather(city, country)
+                obj.values = get_forecast(city, country)
                 obj.last_modified = now()
                 obj.save()
         except ObjectDoesNotExist:
