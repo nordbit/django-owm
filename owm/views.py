@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from settings import CITIES
+from .settings import CITIES
 
 
 class ForecastView(TemplateView):

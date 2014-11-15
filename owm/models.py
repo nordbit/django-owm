@@ -3,22 +3,22 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext_lazy as _
 import json
 import jsonfield
-import urllib2
+import urllib
 
 from django.utils.timezone import now
-from settings import APPID
+#from settings import APPID
 
 
 def get_weather(city, country):
     url = "http://api.openweathermap.org/data/2.5/weather?q=%(city)s,%(country)s&units=metric&APPID=%(appid)s" % {
         'city': city,
         'country': country,
-        'appid': APPID,
+#        'appid': APPID,
     }
     data = {}
     try:
-        req = urllib2.Request(url, None)
-        opener = urllib2.build_opener()
+        req = urllib.request.Request(url, None)
+        opener = urllib.request.build_opener()
         f = opener.open(req)
         data = json.load(f)
     except:
@@ -34,8 +34,8 @@ def get_forecast(city, country):
     }
     data = {}
     try:
-        req = urllib2.Request(url, None)
-        opener = urllib2.build_opener()
+        req = urllib.request.Request(url, None)
+        opener = urllib.request.build_opener()
         f = opener.open(req)
         data = json.load(f)
     except:
